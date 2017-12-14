@@ -99,6 +99,7 @@
 <meta property="og:url" content="http://www.xiedaqi.com/2017-07-14-BFC的那些事儿.html">
 <meta property="og:site_name" content="根据地">
 <meta property="og:description" content="块级格式化上下文（Block Formatting Context）是网页CSS视觉渲染的一部分，并用于决定块盒子的布局。在定位体系（Positioning Scheme）中它属于常规流（Normal Flow）。具有BFC的容器里面的元素不会在布局上影响到外面的元素 下面是w3c中关于“BFC”的翻译:   浮动元素，绝对定位元素，分开、非块级盒子boxes的块级容器（例如 inline-blo">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/0064cTs2gw1euxietp193j30go04u0sx.jpg">
 <meta property="og:updated_time" content="2017-07-19T02:36:42.000Z">
 <meta name="twitter:card" content="summary">
@@ -374,10 +375,10 @@
 
       
         <p>块级格式化上下文（Block Formatting Context）是网页CSS视觉渲染的一部分，并用于决定块盒子的布局。在定位体系（Positioning Scheme）中它属于常规流（Normal Flow）。具有BFC的容器里面的元素不会在布局上影响到外面的元素</p>
-<p>下面是<a href="https://www.w3.org/TR/CSS2/visuren.html#block-formatting" target="_blank" rel="external">w3c</a>中关于“BFC”的翻译:</p>
+<p>下面是<a href="https://www.w3.org/TR/CSS2/visuren.html#block-formatting" target="_blank" rel="noopener">w3c</a>中关于“BFC”的翻译:</p>
 <blockquote>
-<p> 浮动元素，绝对定位元素，分开、非块级<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model" target="_blank" rel="external">盒子boxes</a>的块级容器（例如 inline-blocks, table-cells, 和 table-captions），以及overflow值不为’visiable’的块级盒子，都会为它们的内容创建新的块格式化上下文。</p>
-<p>在同一个块格式化上下文中，盒子从上到下一个一个的排列。上下两个盒子的距离是有“margin”属性控制。两个相邻的块级盒子的垂直外边距会发生<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing" target="_blank" rel="external">外边距折叠</a>。</p>
+<p> 浮动元素，绝对定位元素，分开、非块级<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model" target="_blank" rel="noopener">盒子boxes</a>的块级容器（例如 inline-blocks, table-cells, 和 table-captions），以及overflow值不为’visiable’的块级盒子，都会为它们的内容创建新的块格式化上下文。</p>
+<p>在同一个块格式化上下文中，盒子从上到下一个一个的排列。上下两个盒子的距离是有“margin”属性控制。两个相邻的块级盒子的垂直外边距会发生<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing" target="_blank" rel="noopener">外边距折叠</a>。</p>
 <p>在同一个块格式化上下文中，每一个盒子的外边缘会触碰到容器的左边缘，即使存在浮动也是如此，除非创建一个新的块格式化上下文。</p>
 </blockquote>
 <p>也就是说如果我们想要创建一个块格式化上下文，只要满足下面任意一个条件即可</p>
@@ -385,7 +386,7 @@
 <li>根元素或其它包含它的元素</li>
 <li>float的值不为none</li>
 <li>position的值不为static或relative</li>
-<li>display 的值为 table-cell、table-caption、inline-block、flex 或 inline-flex，<a href="https://drafts.csswg.org/css-display/#valdef-display-flow-root" target="_blank" rel="external">flow-root</a></li>
+<li>display 的值为 table-cell、table-caption、inline-block、flex 或 inline-flex，<a href="https://drafts.csswg.org/css-display/#valdef-display-flow-root" target="_blank" rel="noopener">flow-root</a></li>
 <li>overflow 的值不为 visiable</li>
 </ol>
 <h3 id="BFC的特性及应用"><a href="#BFC的特性及应用" class="headerlink" title="BFC的特性及应用"></a>BFC的特性及应用</h3><ol>
@@ -400,7 +401,7 @@
 <p>效果如下</p>
 <p><img src="http://ww1.sinaimg.cn/large/0064cTs2gw1euxietp193j30go04u0sx.jpg" alt=""></p>
 <p>假设上面的DOM结构如下</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">class</span>=<span class="string">"wrap"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"fl"</span>&gt;</span>float div<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>文字文字....<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">class</span>=<span class="string">"wrap"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"fl"</span>&gt;</span>float div<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>文字文字....<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>Div元素浮动后，p元素没有位移，所以p元素和div元素是重合在一起的。但是p元素中的文字并不会，文字会避开div元素。所以我们能看到文字环绕div元素的效果。</p>
 <p>据此，如果 p 元素创建一个新的BFC那它就不会再紧贴包含块的左侧了。这解决了文本环绕浮动对象的问题。</p>
 </li>
@@ -525,7 +526,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -547,7 +548,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -602,7 +603,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#BFC的特性及应用"><span class="nav-number">1.</span> <span class="nav-text">BFC的特性及应用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#BFC的特性及应用"><span class="nav-number">1.</span> <span class="nav-text"><a href="#BFC&#x7684;&#x7279;&#x6027;&#x53CA;&#x5E94;&#x7528;" class="headerlink" title="BFC&#x7684;&#x7279;&#x6027;&#x53CA;&#x5E94;&#x7528;"></a>BFC&#x7684;&#x7279;&#x6027;&#x53CA;&#x5E94;&#x7528;</span></a></li></ol></div>
             
 
           </div>
